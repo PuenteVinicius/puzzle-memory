@@ -1,7 +1,7 @@
 <template lang="pug">
 main.login
   section.login_wrapper
-    h1.game-title Jogo da
+    h1.game-title Jogo da 
       span Memória
     form.login-form
       label.login-form__label Digite seu nome para começar:
@@ -72,20 +72,19 @@ export default class Login extends Vue {
 @import "../assets/style/variables.sass";
 @import "../assets/style/breakpoints.sass";
 
-.home
+.login
   width: 100%
   min-height: 100vh
   @include flex(column)
-
   @include desktop
     height: 100vh
 
-  &__form-content
+  .login-wrapper
     width: 100%
     height: 100vh
     @include flex(column)
 
-  &__title
+  .game-title
     position: relative
     display: block
     width: auto
@@ -104,27 +103,7 @@ export default class Login extends Vue {
       bottom: 20px
       font-size: 3rem
 
-  &__board-container
-    width: auto
-    margin: 0
-    @include flex(row)
-
-
-  &__card-board
-    width: 100%
-    max-width: 900px
-    height: min-content
-    margin-bottom: 50px
-    margin-top: 20px
-    flex-wrap: wrap
-    @include flex(wrap)
-
-    @include desktop
-      max-width: 700px
-      margin-bottom: unset
-      margin-top: unset
-
-  .user-form
+  .login-form
     width: auto
 
     &__label
