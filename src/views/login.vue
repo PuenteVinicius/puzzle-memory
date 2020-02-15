@@ -1,0 +1,176 @@
+<template lang="pug">
+main.login
+  section.login_wrapper
+    h1.game-title Jogo da
+      span Memória
+    form.login-form
+      label.login-form__label Digite seu nome para começar:
+        span *até 15 caractéres
+      input.login-form__input
+      button.login-form__button Enviar
+</template>
+
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+import { Constants } from "@/constants";
+import Card from "@/components/card/card.interface";
+import User from "@/components/user/user.entity";
+import CardsFactory from "@/components/card/card.factory";
+import CardsService from "@/components/card/card.service";
+import { AxiosResponse } from "axios";
+
+@Component
+export default class Login extends Vue {
+  public selectedCards: Card[] = [];
+  public cards: Card[] = [];
+  public gameStarted = false;
+  public user: User = new User();
+
+  public updateBoard(selectedCard: Card): void {
+    this.selectedCards = CardsFactory.fillSelectedCards(
+      this.selectedCards,
+      selectedCard
+    );
+
+    if (this.selectedCards.length === Constants.CARDS_PEER_TRIE)
+      this.makeAtrie();
+
+    if (CardsFactory.isWinner(this.cards)) this.endGame();
+  }
+
+  public makeAtrie(): void {
+    this.user.userTries++;
+    this.cards = CardsFactory.updateCards(this.selectedCards, this.cards);
+    this.selectedCards = [];
+  }
+
+  public endGame(): void {
+    this.saveUser(this.user);
+    this.startGame();
+  }
+
+  public saveUser(user: User): void {
+    this.user.saveUser(user.userTries, user.userName);
+  }
+
+  public startGame(): void {
+    CardsService.getAllCards().then((response: AxiosResponse<Card[]>) => {
+      this.cards = CardsFactory.randomizeCards(response.data);
+      this.gameStarted = false;
+      this.user = new User();
+    });
+  }
+
+  public submitUser(): void {
+    this.gameStarted = true;
+  }
+}
+</script>
+
+<style scoped lang="sass">
+@import "../assets/style/mixins.sass";
+@import "../assets/style/variables.sass";
+@import "../assets/style/breakpoints.sass";
+
+.home
+  width: 100%
+  min-height: 100vh
+  @include flex(column)
+
+  @include desktop
+    height: 100vh
+
+  &__form-content
+    width: 100%
+    height: 100vh
+    @include flex(column)
+
+  &__title
+    position: relative
+    display: block
+    width: auto
+    bottom: 0
+    text-transform: uppercase
+    font-size: 4rem
+    text-align: center
+
+    span
+      color: $dark-purple
+
+    @include tablet
+      font-size: 3.5rem
+
+    @include desktop
+      bottom: 20px
+      font-size: 3rem
+
+  &__board-container
+    width: auto
+    margin: 0
+    @include flex(row)
+
+
+  &__card-board
+    width: 100%
+    max-width: 900px
+    height: min-content
+    margin-bottom: 50px
+    margin-top: 20px
+    flex-wrap: wrap
+    @include flex(wrap)
+
+    @include desktop
+      max-width: 700px
+      margin-bottom: unset
+      margin-top: unset
+
+  .user-form
+    width: auto
+
+    &__label
+      font-size: 2.5rem
+
+      span
+        color: $dark-grey
+
+      @include desktop
+        font-size: 1rem
+
+
+    &__input
+      width: 100%
+      height: $input-height
+      padding: 0 0 0 15px
+      margin-top: 8px
+      margin-bottom: 15px
+      border: none
+      background: $white
+      font-weight: 600
+      color: $blue
+      -webkit-appearance: none
+      font-size: 2.5rem
+
+      @include desktop
+        height: $input-height-desk
+        font-size: 1rem
+
+    &__button
+      color: $white
+      background-color: $light-blue
+      border-color: lighten($light-blue, $amount: 0.8)
+      padding: .8rem 1.5rem
+      line-height: 1.33
+      border-radius: 6px
+      font-size: 2.5rem
+
+      &:hover
+        transition: .2s all
+        background-color: $blue
+        cursor: pointer
+
+      @include desktop
+        padding: 8px 25px
+        line-height: 1.33
+        border-radius: 6px
+        font-size: 1rem
+</style>
