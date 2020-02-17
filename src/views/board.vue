@@ -1,8 +1,15 @@
 <template lang="pug">
-
-main.board
-  section.home__card-board
-
+section.board
+  div
+    card( 
+      *NgFor="item in cards" 
+      data="item" 
+    ) 
+  tries(
+    ng-if="vm.gameStarted" 
+    tries="vm.user.userTries"
+  )
+  ranking
 </template>
 
 <script lang="ts">
@@ -58,4 +65,22 @@ export default class Board extends Vue {
 }
 </script>
 
-<style scoped lang="sass"></style>
+<style scoped lang="sass">
+@import "../assets/style/mixins.sass";
+@import "../assets/style/variables.sass";
+@import "../assets/style/breakpoints.sass";
+
+.board
+  width: 100%
+  max-width: 900px
+  height: min-content
+  margin-bottom: 50px
+  margin-top: 20px
+  flex-wrap: wrap
+  @include flex(wrap)
+
+  @include desktop
+    max-width: 700px
+    margin-bottom: unset
+    margin-top: unset
+</style>
