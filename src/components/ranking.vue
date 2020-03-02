@@ -7,9 +7,9 @@ div.ranking
         span Nome 
         span Tentativas
     ul.ranking__list
-        li.ranking__list-item(ng-repeat="user in vm.rankingList") 
-        span{{ user.userName }}
-            b{{ user.userTries }}
+        li.ranking__list-item(v-for="user in rankingList") 
+        span {{ user.userName }}
+            b {{ user.userTries }}
 </template>
 
 <script lang="ts">
@@ -53,9 +53,8 @@ export default class RankingComponent extends Vue {
 </script>
 
 <style scoped lang="sass">
-@import "../../assets/style/mixins.sass";
-@import "../../assets/style/variables.sass";
-@import "../../assets/style/breakpoints.sass";
+@import "../assets/style/main.sass"
+
 .ranking
   display: block
   width: 100vw
@@ -64,11 +63,11 @@ export default class RankingComponent extends Vue {
   border-radius: 0
   border: 1px solid $border-color
   background: $white
-  color:$dark-green
+  color: $dark-green
   text-align: center
   overflow-y: auto
 
-  @include desktop
+  +desktop()
     position: absolute
     width: 100%
     max-width: $ranking-width
@@ -82,7 +81,7 @@ export default class RankingComponent extends Vue {
     font-size: 3rem
     margin-top: 50px
 
-    @include desktop
+    +desktop()
       font-size: 1.2rem
       margin: 10px 0 10px 0
 
@@ -92,7 +91,7 @@ export default class RankingComponent extends Vue {
     width: 90%
 
   &__list
-    @include flex(column)
+    +flex(column)
     justify-content: space-around
 
     li
@@ -106,12 +105,12 @@ export default class RankingComponent extends Vue {
 
     span
       font-size: 3.1rem
-      @include desktop
+      +desktop()
         font-size: 1.1rem
 
     b
       font-size: 3.2rem
-      @include desktop {
+      +desktop()
         font-size: 1.2rem
 
       color: $bold-text-color

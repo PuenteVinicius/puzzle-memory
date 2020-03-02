@@ -1,15 +1,12 @@
 <template lang="pug">
 section.board
-  div
-    card( 
-      *NgFor="item in cards" 
-      data="item" 
-    ) 
-  tries(
-    ng-if="vm.gameStarted" 
-    tries="vm.user.userTries"
+  div(v-for="card in cards")
+    card-component(:card="card")
+  tries-component(
+    v-if="gameStarted" 
+    :tries="user.userTries"
   )
-  ranking
+  //- ranking-component
 </template>
 
 <script lang="ts">
@@ -20,13 +17,20 @@ import { Constants } from "@/constants";
 import CardsFactory from "@/components/card/card.factory";
 import CardsService from "@/components/card/card.service";
 import { AxiosResponse } from "axios";
+import CardComponent from "../components/card/card.vue";
+import TriesComponent from "../components/tries.vue";
+import RankingComponent from "../components/ranking.vue";
 
-@Component
+@Component({ components: { CardComponent, TriesComponent, RankingComponent } })
 export default class Board extends Vue {
   private selectedCards: Card[] = [];
   private cards: Card[] = [];
   private gameStarted = false;
   private user: User = new User();
+
+  created() {
+    this.startGame();
+  }
 
   public updateBoard(selectedCard: Card): void {
     this.selectedCards = CardsFactory.fillSelectedCards(
@@ -66,9 +70,7 @@ export default class Board extends Vue {
 </script>
 
 <style scoped lang="sass">
-@import "../assets/style/mixins.sass";
-@import "../assets/style/variables.sass";
-@import "../assets/style/breakpoints.sass";
+@import "../assets/style/main.sass"
 
 .board
   width: 100%

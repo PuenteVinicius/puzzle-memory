@@ -2,7 +2,7 @@
 
 div.tries
   h3.tries__title Tentativas
-  span.tries__text {{tries}}
+  span.tries__text {{ tries }}
 
 </template>
 
@@ -47,9 +47,8 @@ export default class TriesComponent extends Vue {
 </script>
 
 <style scoped lang="sass">
-@import "../../assets/style/mixins.sass";
-@import "../../assets/style/variables.sass";
-@import "../../assets/style/breakpoints.sass";
+@import "../assets/style/main.sass"
+
 .tries
   position: relative
   width: 100vw

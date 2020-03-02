@@ -1,36 +1,37 @@
 <template lang="pug">
-
-div.card
-  button.card__button(
-      ng-class="{'card__button--open' :vm.data.selected,'card__button--close' :!vm.data.selected }"
-      ng-click="vm.onCardClick()" 
-      ng-disabled="vm.data.selected"
-    ) 
-    i.fas.fa-code
-    object(
+  div.card
+    button.card__button(:class="cardClass" @click="onCardClick" :disabled="card.selected")
+      object(
         type="image/svg+xml" 
-        data="{{vm.data.svgPath}}" 
+        :data="card.svgPath" 
         width="80" 
         height="80"
-    )
+      ) 
 
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import Card from "@/components/card/card.interface";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faUserSecret);
 @Component
 export default class CardComponent extends Vue {
-  @Prop({ required: true, type: Object }) card!: Card;
+  @Prop({ required: true, type: Object })
+  private card!: Card;
 
   public onCardClick() {
     this.card.selected = !this.card.selected;
-    // this.sendCards();
   }
 
-  // public sendCards() {
-
-  // }
+  private get cardClass(): object {
+    return {
+      "card__button--open": this.card.selected,
+      "card__button--close": !this.card.selected
+    };
+  }
 }
 </script>
 
