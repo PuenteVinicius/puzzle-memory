@@ -1,34 +1,27 @@
-# memory-game
+# Jogo da memória com Angular.js
 
-## Project setup
-```
-yarn install
-```
+Jogo da memória desenlvolvido com angular.js
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+# Requisitos
 
-### Compiles and minifies for production
-```
-yarn build
-```
+- gulp instalado globalmente
+- Node.js (versão utilizada v8.12.0)
 
-### Run your unit tests
-```
-yarn test:unit
-```
+# Tecnologias utilizadas
 
-### Run your end-to-end tests
-```
-yarn test:e2e
-```
+- SASS
+- GULP
+- ES6
 
-### Lints and fixes files
-```
-yarn lint
-```
+# Plugins
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- sweetAlert
+
+# Getting started
+
+1. Clone repo
+2. `npm install`
+3. `npm start`
+
+Tenha certeza de instalar o gulp globalmente (`npm install -g gulp`)
+Também é necessário ter o node.js instalando de preferência alguma versão mais recente
