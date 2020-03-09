@@ -1,19 +1,21 @@
 <template lang="pug">
-main.login
-  section.login_wrapper
-    h1.game-title Jogo da 
-      span Memória
-    form.login-form
-      label.login-form__label Digite seu nome para começar:
-        span *até 15 caractéres
-      input.login-form__input
-      button.login-form__button Enviar
+  main.login
+    section.login_wrapper
+      h1.game-title Jogo da 
+        span Memória
+      form.login-form
+        label.login-form__label Digite seu nome para começar:
+          span *até 15 caractéres
+        input.login-form__input(v-model="user.userName")
+        a.login-form__button(@click="submitUser") Enviar
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Card from "@/components/card/card.interface";
 import User from "@/components/user/user.entity";
+import VueRouter from "vue-router";
+import { prototype } from 'vue/types/umd';
 
 @Component
 export default class Login extends Vue {
@@ -22,8 +24,22 @@ export default class Login extends Vue {
   public gameStarted = false;
   public user: User = new User();
 
-  // public submitUser(): void {
-  // }
+  constructor(
+  ) {
+    super();
+  }
+
+  public submitUser(): void {
+    const params: User = this.user;
+    this.$router.push({
+      name: "Board",
+      path:'/board/',
+      params: { 
+        userName: params.userName,
+      }, 
+    });
+  }
+
 }
 </script>
 

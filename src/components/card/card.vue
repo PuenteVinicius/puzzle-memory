@@ -24,6 +24,7 @@ export default class CardComponent extends Vue {
 
   public onCardClick() {
     this.card.selected = !this.card.selected;
+    this.$emit('cardSelected', this.card)
   }
 
   private get cardClass(): object {

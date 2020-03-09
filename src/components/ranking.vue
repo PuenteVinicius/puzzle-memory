@@ -1,26 +1,27 @@
 <template lang="pug">
 
-div.ranking
-  h3.ranking__title Ranking
-  div.ranking__list
-    div.ranking__list-item
-        span Nome 
-        span Tentativas
-    ul.ranking__list
+  div.ranking
+    h3.ranking__title Ranking
+    div.ranking__list
+      div.ranking__list-item
+          span Nome 
+          span Tentativas
+      ul.ranking__list(v-if="rankingList.lenght !== 0")
         li.ranking__list-item(v-for="user in rankingList") 
-        span {{ user.userName }}
+          span {{ user.userName }}
             b {{ user.userTries }}
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import User from "./user/user.entity";
 @Component
 export default class RankingComponent extends Vue {
-  private rankingList!: User[];
+  @Prop({ required: true, type: Object }) private user!: User;
+  private rankingList: User[] = [];
 
-  onInsertNewUser(user: User) {
-    this.rankingList.push(user);
+  onInsertNewUser() {
+    this.rankingList.push(this.user);
     this.rankingList = this.orderRanking(this.rankingList);
   }
 

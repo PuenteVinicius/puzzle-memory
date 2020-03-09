@@ -1,48 +1,16 @@
 <template lang="pug">
-
-div.tries
-  h3.tries__title Tentativas
-  span.tries__text {{ tries }}
+  div.tries
+    h3.tries__title Tentativas
+    span.tries__text {{ tries }}
 
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import User from "./user/user.entity";
+import { Component, Vue, Prop } from "vue-property-decorator";
 @Component
 export default class TriesComponent extends Vue {
-  private rankingList!: User[];
-
-  onInsertNewUser(user: User) {
-    this.rankingList.push(user);
-    this.rankingList = this.orderRanking(this.rankingList);
-  }
-
-  orderRanking(rankingList: User[]) {
-    rankingList = this.orderRankingByName(this.rankingList);
-    rankingList = this.orderRankingByTries(this.rankingList);
-    return rankingList;
-  }
-
-  orderRankingByTries(rankingList: User[]) {
-    rankingList.sort((a, b) => {
-      if (a.userTries > b.userTries) return 1;
-      else if (a.userTries < b.userTries) return -1;
-
-      return 0;
-    });
-    return rankingList;
-  }
-
-  orderRankingByName(rankingList: User[]) {
-    rankingList.sort((a, b) => {
-      if (a.userName < b.userName) return 1;
-      else if (a.userName > b.userName) return -1;
-
-      return 0;
-    });
-    return rankingList;
-  }
+  @Prop({ required: true, type: Number })
+  private tries = 0;
 }
 </script>
 

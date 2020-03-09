@@ -1,12 +1,13 @@
 <template lang="pug">
 section.board
   div(v-for="card in cards")
-    card-component(:card="card")
+    card-component(:card="card" @cardSelected="updateBoard")
   tries-component(
-    v-if="gameStarted" 
     :tries="user.userTries"
   )
-  //- ranking-component
+  ranking-component(
+    :user="user"
+  )
 </template>
 
 <script lang="ts">
@@ -27,6 +28,7 @@ export default class Board extends Vue {
   private cards: Card[] = [];
   private gameStarted = false;
   private user: User = new User();
+  private newUser: User = new User();
 
   created() {
     this.startGame();
@@ -56,10 +58,11 @@ export default class Board extends Vue {
   }
 
   public saveUser(user: User): void {
-    this.user.saveUser(user.userTries, user.userName);
+    this.newUser.saveUser(user.userTries, user.userName);
   }
 
   public startGame(): void {
+    this.gameStarted = true;
     CardsService.getAllCards().then((response: AxiosResponse<Card[]>) => {
       this.cards = CardsFactory.randomizeCards(response.data);
       this.gameStarted = false;
