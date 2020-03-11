@@ -23,7 +23,6 @@ import CardComponent from "../components/card/card.vue";
 import TriesComponent from "../components/tries.vue";
 import RankingComponent from "../components/ranking.vue";
 
-
 @Component({ components: { CardComponent, TriesComponent, RankingComponent } })
 export default class Board extends Vue {
   private selectedCards: Card[] = [];
@@ -46,8 +45,8 @@ export default class Board extends Vue {
     }
 
     if (CardsFactory.isWinner(this.cards)) {
-      this.endGame(); 
-    } 
+      this.endGame();
+    }
   }
 
   private makeAtrie(): void {
@@ -83,7 +82,7 @@ export default class Board extends Vue {
   }
 
   private showCards(): void {
-    this.cards = CardsFactory.showCards(this.cards);    
+    this.cards = CardsFactory.showCards(this.cards);
     setTimeout(() => {
       this.cards = CardsFactory.closeCards(this.cards);
     }, 4000);

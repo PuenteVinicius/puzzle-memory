@@ -57,12 +57,16 @@ export default class CardFactory {
   }
 
   public static showCards(cards: Card[]): Card[] {
-    cards.forEach(card => card.selected = true);
+    cards.forEach(card => {
+      card.selected = true;
+    });
     return cards;
   }
 
   public static closeCards(cards: Card[]) {
-    cards.forEach(card => card.selected = false)
+    cards.forEach(card => {
+      card.selected = false;
+    });
     return cards;
   }
 
