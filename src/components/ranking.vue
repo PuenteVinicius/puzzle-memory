@@ -13,43 +13,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 import User from "./user/user.entity";
 @Component
 export default class RankingComponent extends Vue {
-  @Prop({ required: true, type: Object }) private user!: User;
-  private rankingList: User[] = [];
-
-  onInsertNewUser() {
-    this.rankingList.push(this.user);
-    this.rankingList = this.orderRanking(this.rankingList);
-  }
-
-  orderRanking(rankingList: User[]) {
-    rankingList = this.orderRankingByName(this.rankingList);
-    rankingList = this.orderRankingByTries(this.rankingList);
-    return rankingList;
-  }
-
-  orderRankingByTries(rankingList: User[]) {
-    rankingList.sort((a, b) => {
-      if (a.userTries > b.userTries) return 1;
-      else if (a.userTries < b.userTries) return -1;
-
-      return 0;
-    });
-    return rankingList;
-  }
-
-  orderRankingByName(rankingList: User[]) {
-    rankingList.sort((a, b) => {
-      if (a.userName < b.userName) return 1;
-      else if (a.userName > b.userName) return -1;
-
-      return 0;
-    });
-    return rankingList;
-  }
+  @Prop({ required: true, type: Array })
+  private rankingList!: User[];
 }
 </script>
 

@@ -6,68 +6,87 @@ section.board
     :tries="user.userTries"
   )
   ranking-component(
-    :user="user"
+    :rankingList="rankingList"
   )
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { Constants } from "@/constants";
+import { AxiosResponse } from "axios";
 import Card from "@/components/card/card.interface";
 import User from "@/components/user/user.entity";
-import { Constants } from "@/constants";
 import CardsFactory from "@/components/card/card.factory";
 import CardsService from "@/components/card/card.service";
-import { AxiosResponse } from "axios";
+import UserFactory from "@/components/user/user.factory";
 import CardComponent from "../components/card/card.vue";
 import TriesComponent from "../components/tries.vue";
 import RankingComponent from "../components/ranking.vue";
+
 
 @Component({ components: { CardComponent, TriesComponent, RankingComponent } })
 export default class Board extends Vue {
   private selectedCards: Card[] = [];
   private cards: Card[] = [];
-  private gameStarted = false;
   private user: User = new User();
-  private newUser: User = new User();
+  private rankingList: User[] = [];
 
   created() {
     this.startGame();
   }
 
-  public updateBoard(selectedCard: Card): void {
+  private updateBoard(selectedCard: Card): void {
     this.selectedCards = CardsFactory.fillSelectedCards(
       this.selectedCards,
       selectedCard
     );
 
-    if (this.selectedCards.length === Constants.CARDS_PEER_TRIE)
+    if (this.selectedCards.length === Constants.CARDS_PEER_TRIE) {
       this.makeAtrie();
+    }
 
-    if (CardsFactory.isWinner(this.cards)) this.endGame();
+    if (CardsFactory.isWinner(this.cards)) {
+      this.endGame(); 
+    } 
   }
 
-  public makeAtrie(): void {
+  private makeAtrie(): void {
     this.user.userTries++;
     this.cards = CardsFactory.updateCards(this.selectedCards, this.cards);
     this.selectedCards = [];
   }
 
-  public endGame(): void {
-    this.saveUser(this.user);
-    this.startGame();
+  private endGame(): void {
+    this.cards = CardsFactory.closeCards(this.cards);
+    setTimeout(() => {
+      this.saveUser(this.user);
+      this.startGame();
+    }, 1000);
   }
 
-  public saveUser(user: User): void {
-    this.newUser.saveUser(user.userTries, user.userName);
+  private saveUser(user: User): void {
+    this.user.saveUser(user.userTries, user.userName);
+    this.rankingList.push(this.user);
+    this.rankingList = UserFactory.orderRanking(this.rankingList);
   }
 
-  public startGame(): void {
-    this.gameStarted = true;
+  private startGame(): void {
+    this.setCards();
+  }
+
+  private setCards(): void {
     CardsService.getAllCards().then((response: AxiosResponse<Card[]>) => {
       this.cards = CardsFactory.randomizeCards(response.data);
-      this.gameStarted = false;
       this.user = new User();
+      this.showCards();
     });
+  }
+
+  private showCards(): void {
+    this.cards = CardsFactory.showCards(this.cards);    
+    setTimeout(() => {
+      this.cards = CardsFactory.closeCards(this.cards);
+    }, 4000);
   }
 }
 </script>

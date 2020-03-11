@@ -56,6 +56,16 @@ export default class CardFactory {
     return randomizedCards;
   }
 
+  public static showCards(cards: Card[]): Card[] {
+    cards.forEach(card => card.selected = true);
+    return cards;
+  }
+
+  public static closeCards(cards: Card[]) {
+    cards.forEach(card => card.selected = false)
+    return cards;
+  }
+
   public static isWinner(cards: Card[]) {
     return !cards.find(card => card.selected === false);
   }
