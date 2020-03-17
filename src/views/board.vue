@@ -24,6 +24,7 @@ import UserFactory from "@/components/user/user.factory";
 import CardComponent from "../components/card/card.vue";
 import TriesComponent from "../components/tries.vue";
 import RankingComponent from "../components/ranking.vue";
+import swal from "sweetalert";
 
 @Component({ components: { CardComponent, TriesComponent, RankingComponent } })
 export default class Board extends Vue {
@@ -59,19 +60,21 @@ export default class Board extends Vue {
 
   private endGame(): void {
     this.cards = CardsFactory.closeCards(this.cards);
-    setTimeout(() => {
+    swal("Click on either the button or outside the modal.").then(() => {
       this.saveUser();
       this.user = new User();
-      this.startGame();
-    }, 1000);
+      this.$router.push("/");
+    });
   }
 
   private saveUser(): void {
     this.rankingList.push(this.user);
     this.rankingList = UserFactory.orderRanking(this.rankingList);
+    localStorage.setItem("rankingList", JSON.stringify(this.rankingList));
   }
 
   private startGame(): void {
+    this.setRankingList();
     this.user.saveUser(this.$router.currentRoute.params.userName);
     this.setCards();
   }
@@ -88,6 +91,13 @@ export default class Board extends Vue {
     setTimeout(() => {
       this.cards = CardsFactory.closeCards(this.cards);
     }, 4000);
+  }
+
+  private setRankingList() {
+    const rankingList = localStorage.getItem("rankingList");
+    if (rankingList) {
+      this.rankingList = JSON.parse(rankingList);
+    }
   }
 }
 </script>
