@@ -24,7 +24,7 @@ import UserFactory from "@/components/user/user.factory";
 import CardComponent from "../components/card/card.vue";
 import TriesComponent from "../components/tries.vue";
 import RankingComponent from "../components/ranking.vue";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 @Component({ components: { CardComponent, TriesComponent, RankingComponent } })
 export default class Board extends Vue {

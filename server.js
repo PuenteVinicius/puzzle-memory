@@ -1,8 +1,8 @@
-import * as express from "express";
-import * as path from "path";
-import * as serveStatic from "serveStatic";
+const express = require("express");
+const path = require("path");
+const serveStatic = require("serve-static");
 
-const app = express();
+var app = express();
 app.use(serveStatic(path.join(__dirname, "dist")));
 
 const port = process.env.PORT || 5000;
