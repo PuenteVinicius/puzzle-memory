@@ -24,7 +24,7 @@ import UserFactory from "@/components/user/user.factory";
 import CardComponent from "../components/card/card.vue";
 import TriesComponent from "../components/tries.vue";
 import RankingComponent from "../components/ranking.vue";
-import swal from "sweetalert";
+import Swal from 'sweetalert2'
 
 @Component({ components: { CardComponent, TriesComponent, RankingComponent } })
 export default class Board extends Vue {
@@ -60,7 +60,7 @@ export default class Board extends Vue {
 
   private endGame(): void {
     this.cards = CardsFactory.closeCards(this.cards);
-    swal("Click on either the button or outside the modal.").then(() => {
+    Swal.fire("Parábens você finalizou o jogo").then(() => {
       this.saveUser();
       this.user = new User();
       this.$router.push("/");
