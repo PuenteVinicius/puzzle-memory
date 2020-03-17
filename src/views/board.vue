@@ -1,13 +1,15 @@
 <template lang="pug">
-section.board
-  div(v-for="card in cards")
-    card-component(:card="card" @cardSelected="updateBoard")
-  tries-component(
-    :tries="user.userTries"
-  )
-  ranking-component(
-    :rankingList="rankingList"
-  )
+  section.board
+    h1.board__game-title Jogo da 
+      span Memória
+    div(v-for="card in cards")
+      card-component(:card="card" @cardSelected="updateBoard")
+    tries-component(
+      :tries="user.userTries"
+    )
+    ranking-component(
+      :rankingList="rankingList"
+    )
 </template>
 
 <script lang="ts">
@@ -50,7 +52,7 @@ export default class Board extends Vue {
   }
 
   private makeAtrie(): void {
-    this.user.userTries++;
+    this.user.addTrie();
     this.cards = CardsFactory.updateCards(this.selectedCards, this.cards);
     this.selectedCards = [];
   }
@@ -58,25 +60,25 @@ export default class Board extends Vue {
   private endGame(): void {
     this.cards = CardsFactory.closeCards(this.cards);
     setTimeout(() => {
-      this.saveUser(this.user);
+      this.saveUser();
+      this.user = new User();
       this.startGame();
     }, 1000);
   }
 
-  private saveUser(user: User): void {
-    this.user.saveUser(user.userTries, user.userName);
+  private saveUser(): void {
     this.rankingList.push(this.user);
     this.rankingList = UserFactory.orderRanking(this.rankingList);
   }
 
   private startGame(): void {
+    this.user.saveUser(this.$router.currentRoute.params.userName);
     this.setCards();
   }
 
   private setCards(): void {
     CardsService.getAllCards().then((response: AxiosResponse<Card[]>) => {
       this.cards = CardsFactory.randomizeCards(response.data);
-      this.user = new User();
       this.showCards();
     });
   }
@@ -101,6 +103,16 @@ export default class Board extends Vue {
   margin-top: 20px
   flex-wrap: wrap
   @include flex(wrap)
+  &__game-title
+    position: absolute
+    display: block
+    width: auto
+    top: 50px
+    text-transform: uppercase
+    font-size: 4rem
+    text-align: center
+    span
+      color: $dark-purple
 
   @include desktop
     max-width: 700px

@@ -5,9 +5,8 @@
 </template>
 
 <style lang="scss">
-
 body {
-  margin: 0
+  margin: 0;
 }
 #app {
   display: flex;

@@ -7,15 +7,13 @@
         label.login-form__label Digite seu nome para começar:
           span *até 15 caractéres
         input.login-form__input(v-model="user.userName")
-        a.login-form__button(@click="submitUser") Enviar
+        a.login-form__button(@click="submitUser" v-if="user.userName") Enviar
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Card from "@/components/card/card.interface";
 import User from "@/components/user/user.entity";
-import VueRouter from "vue-router";
-import { prototype } from 'vue/types/umd';
 
 @Component
 export default class Login extends Vue {
@@ -24,8 +22,7 @@ export default class Login extends Vue {
   public gameStarted = false;
   public user: User = new User();
 
-  constructor(
-  ) {
+  constructor() {
     super();
   }
 
@@ -33,13 +30,12 @@ export default class Login extends Vue {
     const params: User = this.user;
     this.$router.push({
       name: "Board",
-      path:'/board/',
-      params: { 
-        userName: params.userName,
-      }, 
+      path: "/board/",
+      params: {
+        userName: params.userName
+      }
     });
   }
-
 }
 </script>
 

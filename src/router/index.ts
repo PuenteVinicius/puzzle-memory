@@ -12,9 +12,10 @@ const routes = [
   {
     path: "/board",
     name: "Board",
-    params: { userName:'' },
+    params: { userName: "" },
     component: () => import("@/views/board.vue")
-  }
+  },
+  { path: "*", redirect: "/" }
 ];
 
 const router = new VueRouter({
@@ -22,5 +23,7 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 });
+
+router.replace({ path: "*" });
 
 export default router;

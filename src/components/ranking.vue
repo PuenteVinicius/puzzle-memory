@@ -9,7 +9,7 @@
       ul.ranking__list(v-if="rankingList.lenght !== 0")
         li.ranking__list-item(v-for="user in rankingList") 
           span {{ user.userName }}
-            b {{ user.userTries }}
+          b {{ user.userTries }}
 </template>
 
 <script lang="ts">
@@ -59,8 +59,11 @@ export default class RankingComponent extends Vue {
     display: flex
     justify-content: space-between
     width: 90%
+    span, b
+      font-weight: bold
 
   &__list
+    width: 100%
     +flex(column)
     justify-content: space-around
 

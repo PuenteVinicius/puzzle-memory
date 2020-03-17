@@ -1,6 +1,5 @@
-import User from './user.entity';
+import User from "./user.entity";
 export default class UserFactory {
-
   public static orderRanking(rankingList: User[]) {
     rankingList = this.orderRankingByName(rankingList);
     rankingList = this.orderRankingByTries(rankingList);

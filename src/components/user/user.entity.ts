@@ -7,8 +7,11 @@ export default class User {
     this.userName = "";
   }
 
-  public saveUser(userTries: number, userName: string) {
-    this.userTries = userTries;
+  public saveUser(userName: string) {
     this.userName = userName;
+  }
+
+  public addTrie() {
+    this.userTries = this.userTries + 1;
   }
 }
