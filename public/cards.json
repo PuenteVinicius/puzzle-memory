@@ -3,140 +3,140 @@
     "id": 1,
     "code": "JS",
     "name": "Javascript",
-    "svgPath": "//svgshare.com/i/J3t.svg",
+    "svgPath": "http://svgshare.com/i/J3t.svg",
     "selected": false
   },
   {
     "id": 2,
     "code": "PY",
     "name": "Python",
-    "svgPath": "//svgshare.com/i/J2M.svg",
+    "svgPath": "http://svgshare.com/i/J2M.svg",
     "selected": false
   },
   {
     "id": 3,
     "code": "HTML",
     "name": "HTML",
-    "svgPath": "//svgshare.com/i/J3G.svg",
+    "svgPath": "http://svgshare.com/i/J3G.svg",
     "selected": false
   },
   {
     "id": 4,
     "code": "CSS",
     "name": "CSS",
-    "svgPath": "//svgshare.com/i/J2P.svg",
+    "svgPath": "http://svgshare.com/i/J2P.svg",
     "selected": false
   },
   {
     "id": 5,
     "code": "JAVA",
     "name": "Java",
-    "svgPath": "//svgshare.com/i/J2N.svg",
+    "svgPath": "http://svgshare.com/i/J2N.svg",
     "selected": false
   },
   {
     "id": 6,
     "code": "TS",
     "name": "Typescript",
-    "svgPath": "//svgshare.com/i/J3a.svg",
+    "svgPath": "http://svgshare.com/i/J3a.svg",
     "selected": false
   },
   {
     "id": 7,
     "code": "GO",
     "name": "Go lang",
-    "svgPath": "//svgshare.com/i/J1f.svg",
+    "svgPath": "http://svgshare.com/i/J1f.svg",
     "selected": false
   },
   {
     "id": 8,
     "code": "JL",
     "name": "Julia",
-    "svgPath": "//svgshare.com/i/J3R.svg",
+    "svgPath": "http://svgshare.com/i/J3R.svg",
     "selected": false
   },
   {
     "id": 9,
     "code": "RB",
     "name": "Ruby",
-    "svgPath": "//svgshare.com/i/J1e.svg",
+    "svgPath": "http://svgshare.com/i/J1e.svg",
     "selected": false
   },
   {
     "id": 10,
     "code": "C++",
     "name": "C++",
-    "svgPath": "//svgshare.com/i/J3H.svg",
+    "svgPath": "http://svgshare.com/i/J3H.svg",
     "selected": false
   },
   {
     "id": 11,
     "code": "JS",
     "name": "Javascript",
-    "svgPath": "//svgshare.com/i/J3t.svg",
+    "svgPath": "http://svgshare.com/i/J3t.svg",
     "selected": false
   },
   {
     "id": 12,
     "code": "PY",
     "name": "Python",
-    "svgPath": "//svgshare.com/i/J2M.svg",
+    "svgPath": "http://svgshare.com/i/J2M.svg",
     "selected": false
   },
   {
     "id": 13,
     "code": "HTML",
     "name": "HTML",
-    "svgPath": "//svgshare.com/i/J3G.svg",
+    "svgPath": "http://svgshare.com/i/J3G.svg",
     "selected": false
   },
   {
     "id": 14,
     "code": "CSS",
     "name": "CSS",
-    "svgPath": "//svgshare.com/i/J2P.svg",
+    "svgPath": "http://svgshare.com/i/J2P.svg",
     "selected": false
   },
   {
     "id": 15,
     "code": "JAVA",
     "name": "Java",
-    "svgPath": "//svgshare.com/i/J2N.svg",
+    "svgPath": "http://svgshare.com/i/J2N.svg",
     "selected": false
   },
   {
     "id": 16,
     "code": "TS",
     "name": "Typescript",
-    "svgPath": "//svgshare.com/i/J3a.svg",
+    "svgPath": "http://svgshare.com/i/J3a.svg",
     "selected": false
   },
   {
     "id": 17,
     "code": "GO",
     "name": "Go lang",
-    "svgPath": "//svgshare.com/i/J1f.svg",
+    "svgPath": "http://svgshare.com/i/J1f.svg",
     "selected": false
   },
   {
     "id": 18,
     "code": "JL",
     "name": "Julia",
-    "svgPath": "//svgshare.com/i/J3R.svg",
+    "svgPath": "http://svgshare.com/i/J3R.svg",
     "selected": false
   },
   {
     "id": 19,
     "code": "RB",
     "name": "Ruby",
-    "svgPath": "//svgshare.com/i/J1e.svg",
+    "svgPath": "http://svgshare.com/i/J1e.svg",
     "selected": false
   },
   {
     "id": 20,
     "code": "C++",
     "name": "C++",
-    "svgPath": "//svgshare.com/i/J3H.svg",
+    "svgPath": "http://svgshare.com/i/J3H.svg",
     "selected": false
   }
 ]
