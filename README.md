@@ -1,27 +1,32 @@
-# Jogo da memória com Angular.js
 
-Jogo da memória desenlvolvido com angular.js
+# Memory Puzzle
 
-# Requisitos
+> A simple puzzle memory game with programing languages
 
-- gulp instalado globalmente
-- Node.js (versão utilizada v8.12.0)
+[View project](https://despolitizador.felipefialho.com/)
 
-# Tecnologias utilizadas
+## Getting Started
 
-- SASS
-- GULP
-- ES6
+This project uses Vue, Sass, Pug and Webpack.
 
-# Plugins
+```sh
+# Clone this repository
+$ git@github.com:PuenteVinicius/memory-game.git
+$ cd memory-game
 
-- sweetAlert
+# install dependencies
+$ npm i
 
-# Getting started
+# Run the project
+$ npm start
 
-1. Clone repo
-2. `npm install`
-3. `npm start`
+```
 
-Tenha certeza de instalar o gulp globalmente (`npm install -g gulp`)
-Também é necessário ter o node.js instalando de preferência alguma versão mais recente
+With the commands above, you have everything to start.
+
+### Tasks
+
+- `npm start`: run all tasks and initialize watch for changes and a server
+- `npm run build`: run all production tasks create a `dist` folder to deploy
+- `npm run lint`: lint javascript and css
+- `npm run fix`: command to fix all eslint errors
