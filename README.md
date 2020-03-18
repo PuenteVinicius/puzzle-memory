@@ -3,7 +3,7 @@
 
 > A simple puzzle memory game with programing languages
 
-[View project](https://despolitizador.felipefialho.com/)
+[View project](https://puzzle-memory.herokuapp.com/)
 
 ## Getting Started
 
@@ -12,7 +12,7 @@ This project uses Vue, Sass, Pug and Webpack.
 ```sh
 # Clone this repository
 $ git@github.com:PuenteVinicius/puzzle-memory.git
-$ cd memory-game
+$ cd puzzle-memory
 
 # install dependencies
 $ npm i
