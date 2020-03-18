@@ -11,7 +11,7 @@ This project uses Vue, Sass, Pug and Webpack.
 
 ```sh
 # Clone this repository
-$ git@github.com:PuenteVinicius/memory-game.git
+$ git@github.com:PuenteVinicius/puzzle-memory.git
 $ cd memory-game
 
 # install dependencies
