@@ -24,8 +24,7 @@ import CardComponent from "../components/card/card.vue";
 import TriesComponent from "../components/tries.vue";
 import RankingComponent from "../components/ranking.vue";
 import Swal from "sweetalert2";
-import { Component } from "vue-property-decorator";
-import Vue from "vue/types/umd";
+import { Component, Vue } from "vue-property-decorator";
 
 @Component({ components: { CardComponent, TriesComponent, RankingComponent } })
 export default class Board extends Vue {
