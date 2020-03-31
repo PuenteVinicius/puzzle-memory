@@ -1,13 +1,13 @@
 <template lang="pug">
   main.login
     section.login_wrapper
-      h1.game-title Jogo da 
-        span Memória
+      h1.game-title Puzzle 
+        span Memory
       form.login-form
-        label.login-form__label Digite seu nome para começar:
-          span *até 15 caractéres
+        label.login-form__label Type your name to begin:
+          span *max 15 caracteres
         input.login-form__input(v-model="user.userName")
-        a.login-form__button(@click="submitUser" v-if="user.userName") Enviar
+        a.login-form__button(@click="submitUser" v-if="user.userName") Start
 </template>
 
 <script lang="ts">

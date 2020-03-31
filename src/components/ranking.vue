@@ -4,8 +4,8 @@
     h3.ranking__title Ranking
     div.ranking__list
       div.ranking__list-item
-          span Nome 
-          span Tentativas
+          span Name 
+          span Tries
       ul.ranking__list(v-if="rankingList.lenght !== 0")
         li.ranking__list-item(v-for="user in rankingList") 
           span {{ user.userName }}

@@ -1,7 +1,7 @@
 <template lang="pug">
   section.board
-    h1.board__game-title Jogo da 
-      span Memória
+    h1.board__game-title Puzzle
+      span Memory
     div(v-for="card in cards")
       card-component(:card="card" @cardSelected="updateBoard")
     tries-component(
@@ -13,7 +13,6 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
 import { Constants } from "@/constants";
 import { AxiosResponse } from "axios";
 import Card from "@/components/card/card.interface";
@@ -25,6 +24,8 @@ import CardComponent from "../components/card/card.vue";
 import TriesComponent from "../components/tries.vue";
 import RankingComponent from "../components/ranking.vue";
 import Swal from "sweetalert2";
+import { Component } from "vue-property-decorator";
+import Vue from "vue/types/umd";
 
 @Component({ components: { CardComponent, TriesComponent, RankingComponent } })
 export default class Board extends Vue {

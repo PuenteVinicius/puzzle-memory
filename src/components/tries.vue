@@ -1,6 +1,6 @@
 <template lang="pug">
   div.tries
-    h3.tries__title Tentativas
+    h3.tries__title Tries
     span.tries__text {{ tries }}
 
 </template>
