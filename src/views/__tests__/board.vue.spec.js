@@ -53,41 +53,4 @@ describe('Board', () => {
   it('verify if is a vue Component', () => {
     expect(wrapper.isVueInstance()).toBeTruthy()
   })
-
-  describe('created', () => {
-  
-  })
-
-  describe('updateBoard', () => {
-
-  })
-
-  describe('makeAtrie', () => {
-
-  })
-
-  describe('endGame', () => {
-  
-  })
-
-
-  describe('saveUser', () => {
-  
-  })
-
-  describe('startGame', () => {
-  
-  })
-
-  describe('setCards', () => {
-  
-  })
-
-  describe('showCards', () => {
-  
-  })
-
-  describe('setRankingList', () => {
-  
-  })
 })
