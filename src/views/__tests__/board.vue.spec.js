@@ -12,31 +12,6 @@ const $router = {
   }
 }
 
-const selectedCard = {
-  id: 3,
-  code: "HTML",
-  name: "HTML",
-  svgPath: "https://svgshare.com/i/J3G.svg",
-  selected: false
-}
-
-const selectedCards = [
-  {
-    id: 3,
-    code: "HTML",
-    name: "HTML",
-    svgPath: "https://svgshare.com/i/J3G.svg",
-    selected: false
-  }, 
-  {
-    id: 4,
-    code: "CSS",
-    name: "CSS",
-    svgPath: "https://svgshare.com/i/J2P.svg",
-    selected: false
-  }
-]
-
 const wrapper = shallowMount(Board, {
   mocks: {
     $router,
