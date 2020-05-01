@@ -1,5 +1,6 @@
 import CardFactory from '../card.factory';
 import Card from "../card.interface";
+import puzzleCards from '../../../../public/cards.json';
 
 
 describe('Card Factory', () => {
@@ -261,25 +262,161 @@ describe('Card Factory', () => {
   })
 
   describe('[fillSelectedCards] - Insert selected cards on the temp array', () => {
-  
+    let cardSelected: Card;
+    let cardsSelected: Card[];
+    
+   it('When selected cards is equal to === []', () => {
+      cardSelected = {
+        "id": 1,
+        "code": "JS",
+        "name": "Javascript",
+        "svgPath": "https://svgshare.com/i/J3t.svg",
+        "selected": false
+      };
+      cardsSelected = [];
+      expect(cardFactory.fillSelectedCards(cardsSelected, cardSelected)).toEqual(
+        [
+          {
+            "id": 1,
+            "code": "JS",
+            "name": "Javascript",
+            "svgPath": "https://svgshare.com/i/J3t.svg",
+            "selected": false
+          }
+        ]
+      );
+    });
+
+    it('when selected card is already inserted into selected cards', () => {
+      cardSelected = {
+        "id": 1,
+        "code": "JS",
+        "name": "Javascript",
+        "svgPath": "https://svgshare.com/i/J3t.svg",
+        "selected": false
+      };
+      cardsSelected = [];
+      cardsSelected.push(cardSelected);
+      expect(cardFactory.fillSelectedCards(cardsSelected, cardSelected)).toEqual(
+        [
+          {
+            "id": 1,
+            "code": "JS",
+            "name": "Javascript",
+            "svgPath": "https://svgshare.com/i/J3t.svg",
+            "selected": false
+          }
+        ]
+      );
+    });
+
+    it('when selected card is not already inserted into selected cards', () => {
+      cardSelected = {
+        "id": 3,
+        "code": "HTML",
+        "name": "HTML",
+        "svgPath": "https://svgshare.com/i/J3G.svg",
+        "selected": false
+      };
+      cardsSelected = [
+        {
+          "id": 1,
+          "code": "JS",
+          "name": "Javascript",
+          "svgPath": "https://svgshare.com/i/J3t.svg",
+          "selected": false
+        },
+      ];
+      cardsSelected.push(cardSelected);
+      expect(cardFactory.fillSelectedCards(cardsSelected, cardSelected)).toEqual([
+        {
+          "id": 1,
+          "code": "JS",
+          "name": "Javascript",
+          "svgPath": "https://svgshare.com/i/J3t.svg",
+          "selected": false
+        },
+        {
+          "id": 3,
+          "code": "HTML",
+          "name": "HTML",
+          "svgPath": "https://svgshare.com/i/J3G.svg",
+          "selected": false
+        }
+      ])
+
+    });
+
   })
 
   describe('[updateCards] - Test if selected cards should be cleaned', () => {
-  
+    let cards: Card[] = puzzleCards;
+    let selectedCards: Card[];
+    
+    it('When cards inside selected cards are equals', () => {
+      selectedCards = [];
+
+      cards[0].selected = true;
+      cards[10].selected = true;
+
+
+      selectedCards.push(cards[0]);
+      selectedCards.push(cards[10]);
+
+      cards = cardFactory.updateCards(selectedCards, cards);
+      expect((cards[0].selected && cards[10].selected)).toEqual(true);
+
+    });
+    it('When cards inside selected cards are not equals', () => {
+      selectedCards = [];
+
+      cards[0].selected = true;
+      cards[1].selected = true;
+
+      selectedCards.push(cards[0]);
+      selectedCards.push(cards[1]);
+
+      cards = cardFactory.updateCards(selectedCards, cards);
+      expect((cards[0].selected && cards[1].selected)).toEqual(false);
+    });
   })
 
-  describe('[randomizeCards] - Radom cards', () => {
-  
+  describe('[randomizeCards] - it should Radom cards', () => {
+    it('should return a diferente array of cards', () => {
+      let cards: Card[] = cardFactory.randomizeCards(puzzleCards);
+      expect(cards).not.toEqual(puzzleCards);
+    });
   })
 
   describe('[showCards] - Show cards', () => {
-  
+    it('should set all selected properties to true', () => {
+      let isThereAfalse: boolean = false;
+      let cards: Card[] = cardFactory.showCards(puzzleCards);
+      cards.forEach(card => {
+        isThereAfalse = (card.selected === false);
+      });
+      expect(isThereAfalse).toBe(false);
+    });
   })
   
   describe('[closeCards] - Close cards', () => {
-  
+    it('should set all selected properties to true', () => {
+      let isThereATrue: boolean = false;
+      let cards: Card[] = cardFactory.closeCards(puzzleCards);
+      cards.forEach(card => {
+        isThereATrue = (card.selected === true);
+      });
+      expect(isThereATrue).toBe(false);
+    });
   })
   describe('[isWinner] - Testes if the user won the game', () => {
-  
+    it('all selected properties should be true', () => {
+      let isThereAfalse: boolean = false;
+      let cards: Card[] = cardFactory.showCards(puzzleCards);
+      cards.forEach(card => {
+        isThereAfalse = (card.selected === false);
+      });
+      expect(isThereAfalse).toBe(false);
+    });
   })
 })

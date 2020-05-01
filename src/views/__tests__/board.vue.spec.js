@@ -60,15 +60,10 @@ describe('Board', () => {
 
   describe('updateBoard', () => {
 
-
-
   })
 
   describe('makeAtrie', () => {
-    wrapper.vm.cards = CardsJSON;
-    wrapper.vm.selectedCards = selectedCards;
-    wrapper.vm.updateBoard(selectedCard);
-    expect(wrapper.vm.makeAtrie).toHaveBeenCalled();
+
   })
 
   describe('endGame', () => {
