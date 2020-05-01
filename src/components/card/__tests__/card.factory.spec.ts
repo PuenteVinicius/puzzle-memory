@@ -2,7 +2,6 @@ import CardFactory from '../card.factory';
 import Card from "../card.interface";
 import puzzleCards from '../../../../public/cards.json';
 
-
 describe('Card Factory', () => {
     const cardFactory = CardFactory;
 

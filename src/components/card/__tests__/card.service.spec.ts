@@ -1,7 +1,7 @@
 import puzzleCards from '../../../../public/cards.json';
 import CardService from '../card.service';
 
-describe('Card Factory', () => {
+describe('Card Service', () => {
     const cardServices = CardService;
 
     it('should return the same puzzleCards.JSON ', () => {
