@@ -27,13 +27,13 @@ export default class CardComponent extends Vue {
     this.sendCards();
   }
 
-  private sendCards() {
+  public sendCards() {
     setTimeout(() => {
       this.$emit("cardSelected", this.card);
     }, 800);
   }
 
-  private get cardClass(): object {
+  public get cardClass(): object {
     return {
       "card__button--open": this.card.selected,
       "card__button--close": !this.card.selected
