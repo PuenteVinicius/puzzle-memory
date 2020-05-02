@@ -4,12 +4,12 @@
     h3.ranking__title Ranking
     div.ranking__list
       div.ranking__list-item
-          span Name 
-          span Tries
+          span(id="name") Name 
+          span(id="try") Tries
       ul.ranking__list(v-if="rankingList.lenght !== 0")
         li.ranking__list-item(v-for="user in rankingList") 
-          span {{ user.userName }}
-          b {{ user.userTries }}
+          span(id="name-list") {{ user.userName }}
+          b(id="try-list") {{ user.userTries }}
 </template>
 
 <script lang="ts">
