@@ -10,6 +10,19 @@
     "start": "node server.js",
     "test": "jest"
   },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      ".*\\.(vue)$": "vue-jest"
+    },
+    "collectCoverage": true,
+    "collectCoverageFrom": ["**/*.{js,vue}", "!**/node_modules/**"],
+    "coverageReporters": ["html", "text-summary"]
+  },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
