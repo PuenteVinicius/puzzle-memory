@@ -1,7 +1,7 @@
 <template lang="pug">
   div.tries
     h3.tries__title Tries
-    span.tries__text {{ tries }}
+    span.tries__text {{ tries || 0 }}
 
 </template>
 
@@ -10,7 +10,7 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 @Component
 export default class TriesComponent extends Vue {
   @Prop({ required: true, type: Number })
-  private tries = 0;
+  private tries!: number;
 }
 </script>
 
