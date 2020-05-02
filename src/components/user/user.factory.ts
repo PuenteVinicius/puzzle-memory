@@ -6,7 +6,7 @@ export default class UserFactory {
     return rankingList;
   }
 
-  private static orderRankingByTries(rankingList: User[]) {
+  public static orderRankingByTries(rankingList: User[]) {
     rankingList.sort((a, b) => {
       if (a.userTries > b.userTries) return 1;
       else if (a.userTries < b.userTries) return -1;
@@ -16,10 +16,10 @@ export default class UserFactory {
     return rankingList;
   }
 
-  private static orderRankingByName(rankingList: User[]) {
+  public static orderRankingByName(rankingList: User[]) {
     rankingList.sort((a, b) => {
-      if (a.userName < b.userName) return 1;
-      else if (a.userName > b.userName) return -1;
+      if (a.userName > b.userName) return 1;
+      else if (a.userName < b.userName) return -1;
 
       return 0;
     });

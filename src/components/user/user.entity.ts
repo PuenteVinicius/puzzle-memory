@@ -2,9 +2,9 @@ export default class User {
   public userTries: number;
   public userName: string;
 
-  constructor() {
-    this.userTries = 0;
-    this.userName = "";
+  constructor(userTries = 0, userName = "") {
+    this.userTries = userTries;
+    this.userName = userName;
   }
 
   public saveUser(userName: string) {
