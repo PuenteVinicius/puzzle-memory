@@ -171,7 +171,6 @@ describe('Card Factory', () => {
     });
   })
 
-
   describe('[resetCards] - should set selected porperty of equal cards inside selected cards to false', () => {
     let selectedCards: Card[];
     let cards: Card[];  
@@ -408,6 +407,7 @@ describe('Card Factory', () => {
       expect(isThereATrue).toBe(false);
     });
   })
+
   describe('[isWinner] - Testes if the user won the game', () => {
     it('all selected properties should be true', () => {
       let isThereAfalse: boolean = false;
