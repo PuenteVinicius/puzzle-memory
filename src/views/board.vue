@@ -28,16 +28,16 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component({ components: { CardComponent, TriesComponent, RankingComponent } })
 export default class Board extends Vue {
-  private selectedCards: Card[] = [];
-  private cards: Card[] = [];
-  private user: User = new User();
-  private rankingList: User[] = [];
+  selectedCards: Card[] = [];
+  cards: Card[] = [];
+  user: User = new User();
+  rankingList: User[] = [];
 
   created() {
     this.startGame();
   }
 
-  private updateBoard(selectedCard: Card): void {
+  updateBoard(selectedCard: Card): void {
     this.selectedCards = CardsFactory.fillSelectedCards(
       this.selectedCards,
       selectedCard
@@ -52,13 +52,13 @@ export default class Board extends Vue {
     }
   }
 
-  private makeAtrie(): void {
+  makeAtrie(): void {
     this.user.addTrie();
     this.cards = CardsFactory.updateCards(this.selectedCards, this.cards);
     this.selectedCards = [];
   }
 
-  private endGame(): void {
+  endGame(): void {
     this.cards = CardsFactory.closeCards(this.cards);
     Swal.fire("Parábens você finalizou o jogo").then(() => {
       this.saveUser();
@@ -67,33 +67,33 @@ export default class Board extends Vue {
     });
   }
 
-  private saveUser(): void {
+  saveUser(): void {
     this.rankingList.push(this.user);
     this.rankingList = UserFactory.orderRanking(this.rankingList);
     localStorage.setItem("rankingList", JSON.stringify(this.rankingList));
   }
 
-  private startGame(): void {
+  startGame(): void {
     this.setRankingList();
     this.user.saveUser(this.$router.currentRoute.params.userName);
     this.setCards();
   }
 
-  private setCards(): void {
+  setCards(): void {
     CardsService.getAllCards().then((response: AxiosResponse<Card[]>) => {
       this.cards = CardsFactory.randomizeCards(response.data);
       this.showCards();
     });
   }
 
-  private showCards(): void {
+  showCards(): void {
     this.cards = CardsFactory.showCards(this.cards);
     setTimeout(() => {
       this.cards = CardsFactory.closeCards(this.cards);
     }, 4000);
   }
 
-  private setRankingList() {
+  setRankingList() {
     const rankingList = localStorage.getItem("rankingList");
     if (rankingList) {
       this.rankingList = JSON.parse(rankingList);
