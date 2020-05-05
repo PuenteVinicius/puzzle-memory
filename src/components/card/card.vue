@@ -33,11 +33,8 @@ export default class CardComponent extends Vue {
     }, 800);
   }
 
-  public get cardClass(): object {
-    return {
-      "card__button--open": this.card.selected,
-      "card__button--close": !this.card.selected
-    };
+  public get cardClass(): string {
+    return this.card.selected ? 'card__button--open': 'card__button--close';
   }
 }
 </script>
