@@ -32,7 +32,7 @@
     "core-js": "^3.6.4",
     "express": "^4.17.1",
     "path": "^0.12.7",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "pug-plain-loader": "^1.0.0",
     "register-service-worker": "^1.6.2",
     "serve-static": "^1.14.1",
